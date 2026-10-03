@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oplix Tweaks — PC Optimierung</title>
+<meta name="description" content="Professionelle PC-Optimierung, Gaming-Tweaks und Windows-Optimierung.">
+<style>
+:root{
+  --bg:#050b18;
+  --panel:#0a1428;
+  --panel2:#0d1b34;
+  --blue:#168cff;
+  --blue2:#0066ff;
+  --text:#f5f8ff;
+  --muted:#9eacc4;
+  --line:#1a3155;
+  --green:#31e58a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:
+  radial-gradient(circle at 50% -10%,rgba(22,140,255,.22),transparent 35%),
+  var(--bg);
+  color:var(--text);
+  line-height:1.5;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+
+nav{
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  position:sticky;
+  top:0;
+  background:rgba(5,11,24,.82);
+  backdrop-filter:blur(14px);
+  z-index:10;
+}
+.logo{
+  font-weight:900;
+  font-size:24px;
+  letter-spacing:-1px;
+}
+.logo span{color:var(--blue)}
+.navlinks{
+  display:flex;
+  gap:26px;
+  color:#c8d5ea;
+  font-size:14px;
+}
+.navlinks a:hover{color:#fff}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 19px;
+  border-radius:10px;
+  font-weight:800;
+  border:1px solid var(--line);
+  transition:.2s;
+  cursor:pointer;
+}
+.btn.primary{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  border:0;
+  box-shadow:0 8px 30px rgba(0,102,255,.25);
+}
+.btn:hover{transform:translateY(-2px)}
+
+.hero{
+  text-align:center;
+  padding:95px 0 70px;
+}
+.badge{
+  display:inline-block;
+  padding:7px 12px;
+  border:1px solid #1b477d;
+  background:#0b2040;
+  color:#72b9ff;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+h1{
+  font-size:clamp(42px,7vw,78px);
+  line-height:.98;
+  letter-spacing:-4px;
+  max-width:850px;
+  margin:auto;
+}
+.gradient{
+  background:linear-gradient(90deg,#fff,#62b7ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.hero p{
+  max-width:680px;
+  color:var(--muted);
+  font-size:18px;
+  margin:24px auto 30px;
+}
+.actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:65px;
+}
+.stat{
+  background:rgba(10,20,40,.7);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+}
+.stat b{font-size:24px}
+.stat span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:3px;
+}
+
+section{padding:75px 0}
+.section-head{
+  text-align:center;
+  margin-bottom:35px;
+}
+.eyebrow{
+  color:#58adff;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  font-weight:900;
+}
+h2{
+  font-size:38px;
+  letter-spacing:-1.5px;
+  margin:7px 0;
+}
+.section-head p{color:var(--muted)}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.card{
+  background:linear-gradient(180deg,rgba(13,27,52,.95),rgba(8,17,33,.95));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:26px;
+  position:relative;
+}
+.card.featured{
+  border-color:#218fff;
+  box-shadow:
+    0 0 0 1px rgba(33,143,255,.15),
+    0 25px 70px rgba(0,70,180,.12);
+}
+.ribbon{
+  position:absolute;
+  right:16px;
+  top:16px;
+  background:#147ff0;
+  color:#fff;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+}
+.card h3{font-size:21px}
+.desc{
+  color:var(--muted);
+  font-size:14px;
+  margin:9px 0 18px;
+  min-height:44px;
+}
+.price{
+  font-size:38px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+.price small{
+  font-size:14px;
+  color:var(--muted);
+  font-weight:500;
+}
+.features{
+  list-style:none;
+  margin:20px 0 24px;
+  display:grid;
+  gap:10px;
+  color:#dce6f5;
+  font-size:14px;
+}
+.features li:before{
+  content:"✓";
+  color:var(--green);
+  font-weight:900;
+  margin-right:9px;
+}
+.full{width:100%}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+.step{
+  padding:24px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+}
+.num{
+  color:#57adff;
+  font-weight:900;
+  font-size:13px;
+}
+.step h3{margin:6px 0}
+.step p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:28px;
+}
+.panel p,
+.panel li{
+  color:var(--muted);
+  font-size:14px;
+}
+.panel ul{
+  padding-left:18px;
+  margin-top:15px;
+  display:grid;
+  gap:8px;
+}
+
+.faq{
+  display:grid;
+  gap:10px;
+  max-width:800px;
+  margin:auto;
+}
+details{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:17px 19px;
+}
+summary{
+  cursor:pointer;
+  font-weight:800;
+}
+details p{
+  color:var(--muted);
+  padding-top:10px;
+  font-size:14px;
+}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:35px 0;
+  color:var(--muted);
+  font-size:13px;
+}
+.footerin{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.socials{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.socials a{
+  font-weight:800;
+  transition:.2s;
+}
+.socials a:hover{
+  color:#58adff !important;
+}
+
+@media(max-width:850px){
+  .navlinks{display:none}
+  .cards,.steps,.split,.stats{grid-template-columns:1fr}
+  h1{letter-spacing:-2px}
+  .hero{padding-top:65px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between">
+    <a class="logo" href="#">OPLIX<span>.</span></a>
+
+    <div class="navlinks">
+      <a href="#pakete">Pakete</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#bestellen">Bestellung</a>
+      <a href="#faq">FAQ</a>
+    </div>
+
+    <a class="btn primary" href="#pakete">PC optimieren</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="badge">⚡ PC TWEAKING & OPTIMIERUNG</div>
+
+    <h1>
+      Hol mehr aus deinem
+      <span class="gradient">Gaming-PC.</span>
+    </h1>
+
+    <p>
+      Windows, Treiber, Hintergrundprozesse und Gaming-Einstellungen –
+      sauber abgestimmt auf dein System.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href="#pakete">Pakete ansehen →</a>
+      <a class="btn" href="#ablauf">So funktioniert's</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <b>1:1</b>
+        <span>persönliche Optimierung</span>
+      </div>
+
+      <div class="stat">
+        <b>Windows 10/11</b>
+        <span>Gaming-Systeme</span>
+      </div>
+
+      <div class="stat">
+        <b>NVIDIA & AMD</b>
+        <span>Hardware</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="pakete">
+<div class="container">
+
+  <div class="section-head">
+    <div class="eyebrow">Pakete</div>
+    <h2>Wähle deine Optimierung</h2>
+    <p>
+      Die Zahlung wird persönlich über deinen Discord abgewickelt.
+      Keine Kartenzahlung auf der Website.
+    </p>
+  </div>
+
+  <div class="cards">
+
+    <article class="card">
+      <h3>Windows Optimization</h3>
+
+      <p class="desc">
+        Grundlegende Windows-Optimierung für einen saubereren Gaming-PC.
+      </p>
+
+      <div class="price">
+        10 € <small>Gutscheinwert</small>
+      </div>
+
+      <ul class="features">
+        <li>Windows Gaming-Einstellungen</li>
+        <li>Unnötige Hintergrundprozesse reduzieren</li>
+        <li>Autostart optimieren</li>
+        <li>Grundlegende System-Tweaks</li>
+        <li>Kurze Nachkontrolle</li>
+      </ul>
+
+      <a
+        class="btn primary full"
+        href="https://discord.gg/k5JX73R58"
+        target="_blank">
+        Über Discord bestellen
+      </a>
+    </article>
+
+
+    <article class="card featured">
+
+      <div class="ribbon">BELIEBT</div>
+
+      <h3>AMD / NVIDIA FULL</h3>
+
+      <p class="desc">
+        Grafikkarte, Windows und Fortnite-Einstellungen
+        in einer kompletten Optimierung.
+      </p>
+
+      <div class="price">
+        50 € <small>Gutscheinwert</small>
+      </div>
+
+      <ul class="features">
+        <li>Alles aus dem 10-€-Paket</li>
+        <li>NVIDIA- oder AMD-Optimierung</li>
+        <li>Fortnite Game User Settings</li>
+        <li>Hintergrundprozesse reduzieren</li>
+        <li>Gaming- & Performance-Einstellungen</li>
+        <li>Persönliche 1:1-Optimierung</li>
+      </ul>
+
+      <a
+        class="btn primary full"
+        href="https://discord.gg/k5JX73R58"
+        target="_blank">
+        Über Discord bestellen
+      </a>
+    </article>
+
+
+    <article class="card">
+
+      <h3>ULTIMATE WINDOWS</h3>
+
+      <p class="desc">
+        Das komplette Paket für Windows, Gaming
+        und weiterführende System-Tweaks.
+      </p>
+
+      <div class="price">
+        100 € <small>Gutscheinwert</small>
+      </div>
+
+      <ul class="features">
+        <li>Alles aus dem 50-€-Paket</li>
+        <li>Registry-Tweaks</li>
+        <li>Energie- & Performance-Optimierung</li>
+        <li>Weitere Windows-Systemeinstellungen</li>
+        <li>Prozesse & Dienste optimieren</li>
+        <li>Erweiterte Gaming-Tweaks</li>
+      </ul>
+
+      <a
+        class="btn primary full"
+        href="https://discord.gg/k5JX73R58"
+        target="_blank">
+        Über Discord bestellen
+      </a>
+    </article>
+
+  </div>
+
+
+  <div class="panel" style="margin-top:20px;text-align:center">
+
+    <div class="eyebrow">Zahlung</div>
+
+    <h2 style="font-size:28px">
+      Amazon- oder Fortnite-Gutschein
+    </h2>
+
+    <p>
+      Auf dieser Website gibt es keine direkte Kartenzahlung.
+      Für die Bestellung kontaktierst du mich über Discord
+      und klärst dort den Gutschein und die Zahlungsabwicklung.
+    </p>
+
+    <p style="margin-top:10px">
+      <strong style="color:#fff">Wichtig:</strong>
+      Sende Codes erst nach der bestätigten Bestellung
+      und nur über den vereinbarten sicheren Ablauf.
+    </p>
+
+    <a
+      class="btn primary"
+      style="margin-top:18px"
+      href="https://discord.gg/k5JX73R58"
+      target="_blank">
+      Discord öffnen →
+    </a>
+
+  </div>
+
+</div>
+</section>
+
+
+<section id="ablauf">
+
+<div class="container">
+
+  <div class="section-head">
+    <div class="eyebrow">Einfach & transparent</div>
+    <h2>So läuft die Optimierung ab</h2>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="num">01</div>
+      <h3>Bestellen</h3>
+      <p>
+        Paket auswählen und über Discord die Bestellung starten.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="num">02</div>
+      <h3>Gutschein</h3>
+      <p>
+        Vereinbarten Gutscheinwert und Gutscheinart im Ticket angeben.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="num">03</div>
+      <h3>Optimieren</h3>
+      <p>
+        Wir gehen die Einstellungen gemeinsam durch.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="num">04</div>
+      <h3>Fertig</h3>
+      <p>
+        Du bekommst eine kurze Übersicht der vorgenommenen Änderungen.
+      </p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<section>
+
+<div class="container">
+
+  <div class="split">
+
+    <div class="panel">
+
+      <div class="eyebrow">Was wird geprüft?</div>
+
+      <h2 style="font-size:28px">
+        Dein System im Fokus.
+      </h2>
+
+      <ul>
+        <li>Windows-Einstellungen und Energieoptionen</li>
+        <li>Autostart und unnötige Hintergrundprozesse</li>
+        <li>Grafiktreiber und Gaming-Einstellungen</li>
+        <li>Netzwerk- und Eingabeeinstellungen</li>
+        <li>XMP/EXPO, sofern Hardware und BIOS es unterstützen</li>
+      </ul>
+
+    </div>
+
+
+    <div class="panel">
+
+      <div class="eyebrow">Wichtig</div>
+
+      <h2 style="font-size:28px">
+        Keine leeren Versprechen.
+      </h2>
+
+      <p>
+        Die tatsächliche Verbesserung hängt von Hardware,
+        Spielen und Ausgangszustand ab.
+        Deshalb werden keine pauschalen FPS- oder Ping-Garantien versprochen.
+      </p>
+
+      <p style="margin-top:14px">
+        Vor systemnahen Änderungen solltest du wichtige Daten sichern
+        und einen Wiederherstellungspunkt erstellen.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<section id="bestellen">
+
+<div class="container">
+
+  <div class="section-head">
+    <div class="eyebrow">Bestellung</div>
+    <h2>So bestellst du</h2>
+    <p>
+      Die Bestellung läuft einfach über meinen Discord-Server.
+    </p>
+  </div>
+
+
+  <div class="steps">
+
+    <div class="step">
+
+      <div class="num">01</div>
+
+      <h3>Discord joinen</h3>
+
+      <p>
+        Trete meinem Discord-Server über den Button unten bei.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="num">02</div>
+
+      <h3>Ticket öffnen</h3>
+
+      <p>
+        Öffne im Discord ein Ticket und wähle
+        <strong>„Gutschein Codes“</strong>.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="num">03</div>
+
+      <h3>Daten senden</h3>
+
+      <p>
+        Schreibe deinen
+        <strong>Gutscheincode</strong>
+        und den
+        <strong>Namen des Gutscheins</strong>
+        dazu, z. B. Amazon oder Fortnite V-Bucks.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="num">04</div>
+
+      <h3>Paket angeben</h3>
+
+      <p>
+        Schreibe außerdem dazu,
+        welches Optimierungs-Paket du möchtest:
+        <strong>10 €, 50 € oder 100 €</strong>.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="panel" style="margin-top:20px;text-align:center">
+
+    <h2 style="font-size:28px">
+      Beispiel für deine Nachricht
+    </h2>
+
+    <p style="margin-top:10px">
+
+      <strong style="color:#fff">Gutschein:</strong>
+      Amazon
+      <br>
+
+      <strong style="color:#fff">Code:</strong>
+      DEIN-GUTSCHEIN-CODE
+      <br>
+
+      <strong style="color:#fff">Paket:</strong>
+      50 € AMD / NVIDIA FULL
+
+    </p>
+
+    <a
+      class="btn primary"
+      style="margin-top:20px"
+      href="https://discord.gg/k5JX73R58"
+      target="_blank">
+      Discord öffnen →
+    </a>
+
+  </div>
+
+
+  <div class="panel" style="margin-top:15px">
+
+    <p>
+      <strong style="color:#fff">Hinweis:</strong>
+      Teile Gutschein-Codes nur im vorgesehenen Ticket
+      und erst nach Prüfung der Bestellung.
+      Verwende für die Zahlung nur Gutscheine,
+      die du selbst rechtmäßig erworben hast.
+    </p>
+
+  </div>
+
+</div>
+</section>
+
+
+<section id="faq">
+
+<div class="container">
+
+  <div class="section-head">
+    <div class="eyebrow">FAQ</div>
+    <h2>Häufige Fragen</h2>
+  </div>
+
+
+  <div class="faq">
+
+    <details>
+      <summary>Wie bezahle ich?</summary>
+      <p>
+        Die Website nimmt keine Kartenzahlung an.
+        Für die Bestellung gehst du über den Discord-Button
+        auf meinen Server und klärst dort das gewünschte Paket
+        und den vereinbarten Gutscheinwert.
+        Codes bitte erst nach bestätigter Bestellung weitergeben.
+      </p>
+    </details>
+
+
+    <details>
+      <summary>Bekomme ich garantiert mehr FPS?</summary>
+      <p>
+        Nein. Eine seriöse Optimierung sollte keine pauschale
+        FPS-Garantie versprechen.
+        Das Ergebnis hängt von PC, Spiel und Ausgangszustand ab.
+      </p>
+    </details>
+
+
+    <details>
+      <summary>Ist die Remote-Optimierung sicher?</summary>
+      <p>
+        Bei einer Remote-Session sollte der Kunde jeden Schritt
+        sehen und die Verbindung nur für die vereinbarte Session freigeben.
+        Keine Passwörter oder privaten Zugangsdaten weitergeben.
+      </p>
+    </details>
+
+
+    <details>
+      <summary>Für welche PCs ist das gedacht?</summary>
+      <p>
+        Für Gaming-PCs mit Windows 10 oder Windows 11
+        sowie NVIDIA- und AMD-Hardware.
+      </p>
+    </details>
+
+  </div>
+
+</div>
+</section>
+
+
+<footer>
+
+<div class="container footerin">
+
+  <div>
+    <b style="color:#fff">OPLIX.</b>
+    PC Tweaking & Optimierung
+  </div>
+
+  <div class="socials">
+
+    <a
+      href="https://discord.gg/k5JX73R58"
+      target="_blank"
+      style="color:#58adff">
+      Discord
+    </a>
+
+    <a
+      href="https://www.tiktok.com/@_oplixfnbr"
+      target="_blank"
+      style="color:#fff">
+      TikTok
+    </a>
+
+    <a
+      href="https://www.youtube.com/@OplixFortnite"
+      target="_blank"
+      style="color:#fff">
+      YouTube
+    </a>
+
+    <span>·</span>
+
+    <span>Impressum</span>
+
+    <span>Datenschutz</span>
+
+  </div>
+
+</div>
+
+</footer>
+
+
+</body>
+</html>
